@@ -11,7 +11,8 @@ Components in basic Java 2D Game:
 7. Code to check time for updating player position
 8. Parent entity class
 9. Code for player
-10. Assign people for sprites DO NOT FORGET ./ or .// FOKIN HELL AHHAAHAHA
+10. Assign people for sprites and tiles DO NOT FORGET ./ or ../ FOKIN HELL AHHAAHAHA
+11. People in charge of world map
 
 
 
