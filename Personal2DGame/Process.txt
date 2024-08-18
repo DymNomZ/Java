@@ -1,0 +1,60 @@
+Components in basic Java 2D Game:
+
+1. Extend JFrame, set window settings
+2. Create Game Panel, set tile size, screen width and height
+3. Create Game Loop via thread
+4. Code for updating play position, set player default position
+    Java starts at 0,0 which is upper left corner
+    x increase only to the right, y increase only down
+5. Code for drawing
+6. Handle key input
+7. Code to check time for updating player position
+    Resources regarding time in relation to FPS: 
+    https://gamedev.stackexchange.com/questions/139694/java-thread-sleep-vs-get-last-and-current-time
+    Note: FPS  = 60 (or any number set by programmer)
+    Classic .sleep() loop:
+    @Override
+    public void run(){
+        double drawInterval = 1000000000/FPS;
+        double nextDrawTime = System.nanoTime() + drawInterval;
+
+        while(gameThread != null){
+
+            updatePlayerLoc();
+            repaint();
+
+            
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+
+                if(remainingTime < 0) remainingTime = 0;
+
+                Thread.sleep((long)remainingTime);
+                nextDrawTime += drawInterval;
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    Delta loop:
+    @Override
+    public void run(){
+        double drawInterval = 1000000000/FPS, delta = 0;
+        long lastTime = System.nanoTime(), currentTime;
+
+        while(gameThread != null){
+
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
+
+            if(delta >= 1){
+                updatePlayerLoc();
+                repaint();
+                delta--;
+            }
+        }
+    }
