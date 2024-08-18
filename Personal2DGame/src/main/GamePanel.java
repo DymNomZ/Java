@@ -6,11 +6,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable{
 
     final int origTileSize = 16;
     final int scale = 3;
-    final int tileSize = origTileSize * scale;
+    public final int tileSize = origTileSize * scale;
     final int maxScreenCol = 16;
     final int maxScreenRow = 16;
     final int screenWidth = tileSize * maxScreenCol;
@@ -20,11 +22,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
-
-    //Default player coords:
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+    Player player = new Player(this, keyHandler);
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -54,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
             lastTime = currentTime;
 
             if(delta >= 1){
-                updatePlayerLoc();
+                update();
                 repaint();
                 delta--;
                 drawCount++;
@@ -68,17 +66,9 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void updatePlayerLoc(){
-        //Could separate elses in different ifs
-        if(keyHandler.upPressed){
-            playerY -= playerSpeed;
-        }else if(keyHandler.leftPressed){
-            playerX -= playerSpeed;
-        }else if(keyHandler.downPressed){
-            playerY += playerSpeed;
-        }else if(keyHandler.rightPressed){
-            playerX += playerSpeed;
-        }
+    public void update(){
+        
+        player.updatePlayerPos();
     }
 
     @Override
@@ -87,8 +77,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics graphics2D = (Graphics2D)graphics;
 
-        graphics2D.setColor(Color.white);
-        graphics2D.fillRect(playerX, playerY, tileSize, tileSize);
+        player.draw(graphics2D);
         graphics2D.dispose();
     }
 

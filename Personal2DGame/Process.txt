@@ -9,7 +9,20 @@ Components in basic Java 2D Game:
 5. Code for drawing
 6. Handle key input
 7. Code to check time for updating player position
-    Resources regarding time in relation to FPS: 
+8. Parent entity class
+9. Code for player
+10. Assign people for sprites DO NOT FORGET ./ or .// FOKIN HELL AHHAAHAHA
+
+
+
+
+
+
+
+
+
+
+Resources regarding time in relation to FPS: 
     https://gamedev.stackexchange.com/questions/139694/java-thread-sleep-vs-get-last-and-current-time
     Note: FPS  = 60 (or any number set by programmer)
     Classic .sleep() loop:
