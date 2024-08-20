@@ -23,7 +23,9 @@ public class Player extends Entity{
         screenX = gamePanel.screenWidth/2 - (gamePanel.tileSize/2);
         screenY = gamePanel.screenHeight/2 - (gamePanel.tileSize/2);
 
-        //adjust
+        //adjust as needed
+        // width and height rely on tile size (meaning scale has already been applied)
+        // make sure to update values when changing scale value
         hitbox = new Rectangle(8, 16, 32, 32);
 
         setDefaultValues();
