@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -21,6 +22,9 @@ public class Player extends Entity{
 
         screenX = gamePanel.screenWidth/2 - (gamePanel.tileSize/2);
         screenY = gamePanel.screenHeight/2 - (gamePanel.tileSize/2);
+
+        //adjust
+        hitbox = new Rectangle(8, 16, 32, 32);
 
         setDefaultValues();
         getPlayerImage();
@@ -52,18 +56,22 @@ public class Player extends Entity{
     public void updatePlayerPos(){
         //Could separate elses in different ifs
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) {
-            if(keyHandler.upPressed){
-                direction = "up";
-                y -= speed;
-            }else if(keyHandler.leftPressed){
-                direction = "left";
-                x -= speed;
-            }else if(keyHandler.downPressed){
-                direction = "down";
-                y += speed;
-            }else if(keyHandler.rightPressed){
-                direction = "right";
-                x += speed;
+            if(keyHandler.upPressed){ direction = "up";
+            }else if(keyHandler.leftPressed){ direction = "left";
+            }else if(keyHandler.downPressed){ direction = "down";
+            }else if(keyHandler.rightPressed){ direction = "right";
+            }
+
+            onCollision = false;
+            gamePanel.collisionChecker.checkTile(this);
+
+            if(!onCollision){
+                switch(direction){
+                    case "up" -> y -= speed;
+                    case "left" -> x -= speed;
+                    case "down" -> y += speed;
+                    case "right" -> x += speed;
+                }
             }
     
             spriteCounter++;
@@ -102,5 +110,6 @@ public class Player extends Entity{
         }
 
         graphics2D.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+        graphics2D.fillRect(screenX + hitbox.x, screenY + hitbox.y, hitbox.width, hitbox.height); 
     }
 }

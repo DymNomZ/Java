@@ -13,6 +13,8 @@ Components in basic Java 2D Game:
 9. Code for player
 10. Assign people for sprites and tiles DO NOT FORGET ./ or ../ FOKIN HELL AHHAAHAHA
 11. People in charge of world map
+12. Decide how player and camera works
+13. Collision ALWAYS REMEMBER YOUR COLS AND ROWS AHAHAHAHHAH AND PLS PLS PLS NAME YOUR VARIABLES PROPERLY SO YOU WONT USE THE WRONG VARIABLE WITH A REALLY SIMILAR NAMEs
 
 
 

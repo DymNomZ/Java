@@ -10,8 +10,8 @@ import main.GamePanel;
 public class TileManager {
 
     GamePanel gamePanel;
-    Tile[] tiles;
-    int mapTileNum[][];
+    public Tile[] tiles;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -29,8 +29,10 @@ public class TileManager {
             tiles[0].image = ImageIO.read(getClass().getResourceAsStream("../../res/tiles/grass.png"));
             tiles[1] = new Tile();
             tiles[1].image = ImageIO.read(getClass().getResourceAsStream("../../res/tiles/brick.png"));
+            tiles[1].collision = true;
             tiles[2] = new Tile();
             tiles[2].image = ImageIO.read(getClass().getResourceAsStream("../../res/tiles/water.png"));
+            tiles[2].collision = true;
 
         } catch (IOException e) {
             e.printStackTrace();
