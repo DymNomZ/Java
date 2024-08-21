@@ -15,7 +15,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
-    int keyAmnt = 0;
+    public int keyAmnt = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler){
         
@@ -103,6 +103,7 @@ public class Player extends Entity{
                     gamePanel.worldObjects[objIdx] = null;
                     System.out.println("Keys: " + keyAmnt);
                     gamePanel.playSoundEffect(1);
+                    gamePanel.UI.showMessage("You got a key!");
                 }
                 case "Door" -> {
                     if(keyAmnt > 0){
@@ -118,6 +119,7 @@ public class Player extends Entity{
                         keyAmnt -= 2;
                         System.out.println("Keys: " + keyAmnt);
                         gamePanel.playSoundEffect(1);
+                        gamePanel.UI.isGameComplete = true;
                     }else System.out.println("Not enough keys!");
                 }
             }

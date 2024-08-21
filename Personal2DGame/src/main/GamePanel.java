@@ -32,10 +32,11 @@ public class GamePanel extends JPanel implements Runnable{
     //GAME SYSTEM
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
-    Sound BGM = new Sound();
+    public Sound BGM = new Sound();
     Sound SoundEffect = new Sound();
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter assetSetter = new AssetSetter(this);
+    public UI UI = new UI(this);
     Thread gameThread;
 
     //ENTITIES AND OBJECTS
@@ -100,7 +101,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
 
-        Graphics graphics2D = (Graphics2D)graphics;
+        Graphics2D graphics2D = (Graphics2D)graphics;
 
         tileManager.draw(graphics2D);
 
@@ -109,6 +110,8 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         player.draw(graphics2D);
+        UI.draw(graphics2D);
+
         graphics2D.dispose();
     }
 

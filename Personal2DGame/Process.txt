@@ -3,6 +3,7 @@ Components in basic Java 2D Game:
 IMPORTANT: 
 Really discuss which variables, class members, functions, etc are public or private etc.
 Find out which methods can help improve game performance.
+Everyone should comment their functions, simple definition as to what it promises to do, keyword promises.
 
 1. Extend JFrame, set window settings
 2. Create Game Panel, set tile size, screen width and height
@@ -40,7 +41,10 @@ Find out which methods can help improve game performance.
 16. Sound file is 16bit and in WAV format which the default java library can only accept, will be a great field for sound team to try out
     Different libraries by other people or make their own solutions
     Current sound solution plays weird, will fix later, sound team will handle, I reckon is because I ticked the loop checkbox when exporting from beepbox
-17. 
+17. UI, includes fonts
+18. End game thread once game is complete\
+19. Show total played hours/time after completing game*, power ups*, game complete/end screen
+
 
 
 
