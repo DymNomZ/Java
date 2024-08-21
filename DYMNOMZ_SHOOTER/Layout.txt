@@ -1,0 +1,55 @@
+Plans to recreate my Grade 10 shooter game that I made using Scratch
+
+1. Draw all sprites to be used (Map tiles, Power-ups, Zombie, Player) Bullet is simple rectangle
+
+2. Implement General game systen, render map and player, player and camera Movement
+
+3. Player to map Collisions
+
+4. Make Player follow cursor
+
+5. Implement diagonal movement
+
+6. Implement bullet function
+
+7. Bullet to map Collision
+
+8. Make Zombie look and move towards player
+
+9. Zombie to player collision + damage to player + death = game over
+
+10. Zombie to map collision
+
+11. Bullet to Zombie collision + damage to Zombie
+
+12. Zombie death + random power up drop + chances
+
+13. Zombie to drop no collision
+
+14. Player to drop collision + activate power up + power up timer
+
+15. Apply power effect to Zombie
+
+16. Implement random zombie spawn
+
+17. Add music and sound effects
+
+=================== BASE GAME COMPLETE ==========================================
+
+=================== ADVANCED ===========================
+
+1. Implement wave system = Constant number of zombies per wave, -counter per kill
+
+2. Early rounds spawn zombies slower, increase per amount of rounds, has limit to how fast they spawn
+
+3. Increase zombie count per round
+
+4. Implement pause function
+
+5. In pause menu, have resume or quit game button, if quit game -> end game function
+
+6. Add Title Screen + about/info
+
+=================== FINAL TOUCHES ======================
+
+1. Export game to downloadable executable
