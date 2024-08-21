@@ -15,6 +15,8 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
+    int keyAmnt = 0;
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler){
         
         this.gamePanel = gamePanel;
@@ -26,10 +28,13 @@ public class Player extends Entity{
         //adjust as needed
         // width and height rely on tile size (meaning scale has already been applied)
         // make sure to update values when changing scale value
-        hitbox = new Rectangle(8, 16, 32, 32);
+        hitBox = new Rectangle(8, 16, 32, 32);
+        hitboxDefX = hitBox.x;
+        hitboxDefY = hitBox.y;
 
         setDefaultValues();
         getPlayerImage();
+
     }
 
     public void setDefaultValues(){
@@ -67,6 +72,9 @@ public class Player extends Entity{
             onCollision = false;
             gamePanel.collisionChecker.checkTile(this);
 
+            int objectIdx = gamePanel.collisionChecker.checkObject(this, true);
+            pickUpObj(objectIdx);
+
             if(!onCollision){
                 switch(direction){
                     case "up" -> y -= speed;
@@ -83,6 +91,37 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+    }
+
+    public void pickUpObj(int objIdx){
+        
+         if(objIdx != 999){
+            String objName = gamePanel.worldObjects[objIdx].name;
+            switch(objName){
+                case "Shamrock" -> {
+                    keyAmnt++;
+                    gamePanel.worldObjects[objIdx] = null;
+                    System.out.println("Keys: " + keyAmnt);
+                    gamePanel.playSoundEffect(1);
+                }
+                case "Door" -> {
+                    if(keyAmnt > 0){
+                        gamePanel.worldObjects[objIdx] = null;
+                        keyAmnt--;
+                        System.out.println("Keys: " + keyAmnt);
+                        gamePanel.playSoundEffect(1);
+                    }
+                }
+                case "Gold_Door" -> {
+                    if(keyAmnt > 1){
+                        gamePanel.worldObjects[objIdx] = null;
+                        keyAmnt -= 2;
+                        System.out.println("Keys: " + keyAmnt);
+                        gamePanel.playSoundEffect(1);
+                    }else System.out.println("Not enough keys!");
+                }
+            }
+         }
     }
 
     public void draw(Graphics graphics2D){
@@ -112,6 +151,7 @@ public class Player extends Entity{
         }
 
         graphics2D.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-        graphics2D.fillRect(screenX + hitbox.x, screenY + hitbox.y, hitbox.width, hitbox.height); 
+        //draw hitbox
+        //graphics2D.fillRect(screenX + hitBox.x, screenY + hitBox.y, hitBox.width, hitBox.height); 
     }
 }

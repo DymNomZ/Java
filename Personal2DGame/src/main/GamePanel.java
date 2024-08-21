@@ -11,6 +11,7 @@ import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 
+    //TILE AND WINDOW SETTINGS
     final int origTileSize = 16;
     final int scale = 3;
     public final int tileSize = origTileSize * scale;
@@ -19,20 +20,28 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
+    //FPS
     int FPS = 60;
 
+    //WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
-    public final int worldWidth = tileSize * maxWorldCol;
-    public final int worldHeight = tileSize * maxWorldRow;
+    public final int worldWidth = tileSize * maxWorldCol; //unused, pre-camera
+    public final int worldHeight = tileSize * maxWorldRow; //unused, pre-camera
 
+    //GAME SYSTEM
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
-    Thread gameThread;
+    Sound BGM = new Sound();
+    Sound SoundEffect = new Sound();
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public AssetSetter assetSetter = new AssetSetter(this);
+    Thread gameThread;
+
+    //ENTITIES AND OBJECTS
     public Player player = new Player(this, keyHandler);
     public SuperOBJ worldObjects[] = new SuperOBJ[10];
-    public AssetSetter assetSetter = new AssetSetter(this);
+    public SuperOBJ playerINV[] = new SuperOBJ[10];
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -44,6 +53,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame(){
         assetSetter.setObjects();
+
+        playMusic(0);
     }
 
     public void startGameThread(){
@@ -101,5 +112,18 @@ public class GamePanel extends JPanel implements Runnable{
         graphics2D.dispose();
     }
 
+    public void playMusic(int i){
+        BGM.setSound(i);
+        BGM.playSound();
+        BGM.loopSound();
+    }
 
+    public void stopMusic(){
+        BGM.stopSound();
+    }
+
+    public void playSoundEffect(int i){
+        SoundEffect.setSound(i);
+        SoundEffect.playSound();
+    }
 }

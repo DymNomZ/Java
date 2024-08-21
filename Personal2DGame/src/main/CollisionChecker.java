@@ -10,10 +10,10 @@ public class CollisionChecker {
 
     public void checkTile(Entity entity){
 
-        int hitBoxLeft = entity.x + entity.hitbox.x;
-        int hitBoxRight = entity.x + entity.hitbox.x + entity.hitbox.width;
-        int hitBoxTop = entity.y + entity.hitbox.y;
-        int hitBoxBottom = entity.y + entity.hitbox.y + entity.hitbox.height;
+        int hitBoxLeft = entity.x + entity.hitBox.x;
+        int hitBoxRight = entity.x + entity.hitBox.x + entity.hitBox.width;
+        int hitBoxTop = entity.y + entity.hitBox.y;
+        int hitBoxBottom = entity.y + entity.hitBox.y + entity.hitBox.height;
 
         int hitBoxLeftCol = hitBoxLeft/gamePanel.tileSize;
         int hitBoxRightCol = hitBoxRight/gamePanel.tileSize;
@@ -60,5 +60,62 @@ public class CollisionChecker {
                 }
             }
         }
+    }
+
+    public int checkObject(Entity entity, boolean isPlayer){
+        // any number will do as long as number is not within range of worldObjects array size
+        int idx = 999;
+
+        for (int i = 0; i < gamePanel.worldObjects.length; i++) {
+            if(gamePanel.worldObjects[i] != null){
+                //get entity's hitBox position
+                entity.hitBox.x += entity.x;
+                entity.hitBox.y += entity.y;
+                //get object's hitBox position
+                gamePanel.worldObjects[i].hitBox.x += gamePanel.worldObjects[i].x;
+                gamePanel.worldObjects[i].hitBox.y += gamePanel.worldObjects[i].y;
+
+                switch(entity.direction){
+                    case "up" -> {
+                        entity.hitBox.y -= entity.speed;
+                        if(entity.hitBox.intersects(gamePanel.worldObjects[i].hitBox)){
+                            System.out.println("up collision");
+                            if(gamePanel.worldObjects[i].collision) entity.onCollision = true;
+                            if(isPlayer) idx = i;
+                        }
+                    }
+                    case "left" -> {
+                        entity.hitBox.x -= entity.speed;
+                        if(entity.hitBox.intersects(gamePanel.worldObjects[i].hitBox)){
+                            System.out.println("left collision");
+                            if(gamePanel.worldObjects[i].collision) entity.onCollision = true;
+                            if(isPlayer) idx = i;
+                        }
+                    }
+                    case "down" -> {
+                        entity.hitBox.y += entity.speed;
+                        if(entity.hitBox.intersects(gamePanel.worldObjects[i].hitBox)){
+                            System.out.println("down collision");
+                            if(gamePanel.worldObjects[i].collision) entity.onCollision = true;
+                            if(isPlayer) idx = i;
+                        }
+                    }
+                    case "right" -> {
+                        entity.hitBox.x += entity.speed;
+                        if(entity.hitBox.intersects(gamePanel.worldObjects[i].hitBox)){
+                            System.out.println("right collision");
+                            if(gamePanel.worldObjects[i].collision) entity.onCollision = true;
+                            if(isPlayer) idx = i;
+                        }
+                    }
+                }
+                entity.hitBox.x = entity.hitboxDefX;
+                entity.hitBox.y = entity.hitboxDefY;
+                gamePanel.worldObjects[i].hitBox.x = gamePanel.worldObjects[i].hitBoxDefX;
+                gamePanel.worldObjects[i].hitBox.y = gamePanel.worldObjects[i].hitBoxDefY;
+            }
+        }
+
+        return idx;
     }
 }

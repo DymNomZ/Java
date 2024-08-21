@@ -1,5 +1,9 @@
 Components in basic Java 2D Game:
 
+IMPORTANT: 
+Really discuss which variables, class members, functions, etc are public or private etc.
+Find out which methods can help improve game performance.
+
 1. Extend JFrame, set window settings
 2. Create Game Panel, set tile size, screen width and height
 3. Create Game Loop via thread
@@ -17,7 +21,26 @@ Components in basic Java 2D Game:
 13. Collision ALWAYS REMEMBER YOUR COLS AND ROWS AHAHAHAHHAH AND PLS PLS PLS NAME YOUR VARIABLES PROPERLY SO YOU WONT USE THE WRONG VARIABLE WITH A REALLY SIMILAR NAMES
 14. Objects
 15. Inventory system*
+    Current method puts null in array when object is obtained
+    This would result in a Minecraft-like inventory where the slots dont auto-adjust to the left
+    Discuss whether to use this method or not
 
+    As for counting how much a player has a certain item, there are different methods:
+    Have distinct variables for each item in the entire game then loop to count (could be inefficient in memory, but could save time checking if looping)
+    If using the Minecraft-like inventory, could have a separate array for amount, index would just match the object's
+    current position and store the amount of a certain object in that position. Can save implementation to display amount
+    If not, only check amount of certain object when needed (ie. interacting with requiring objects/npcs/etc);
+
+    Decide whether to check object name/member for counting or to check object type instead;
+
+15. Objects collision (Uses intersects() method, applicable for small sized varibales, 
+    however, if plan to be used for tile checks, it is plausible and game would still run fine.
+    Current method of tile check only checks front two tiles, could be a topic for discussion as to
+    what method is to be used)
+16. Sound file is 16bit and in WAV format which the default java library can only accept, will be a great field for sound team to try out
+    Different libraries by other people or make their own solutions
+    Current sound solution plays weird, will fix later, sound team will handle, I reckon is because I ticked the loop checkbox when exporting from beepbox
+17. 
 
 
 
