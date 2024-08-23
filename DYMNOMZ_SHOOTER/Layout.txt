@@ -11,8 +11,7 @@ Power Ups:
 - Regen
 - +HP
 
-2. Implement General game systen, render map and player, player and camera Movement
-
+2. Implement General game system, render map and player, player and camera Movementv✅
 
 3. Player to map Collisions
 
