@@ -83,16 +83,18 @@ public class DYM_Player extends DYM_Entity{
         float yDistance = cursorY - screen_y;
         AffineTransform tran = new AffineTransform();
         double rotationAngle = Math.toDegrees(Math.atan2(yDistance, xDistance));
-        tran.rotate(rotationAngle);
+        tran.rotate(0);
+        double temp = 90;
 
         System.out.println(cursorX + " " + cursorY + " " + screen_x + " " + screen_y + " " + rotationAngle);
 
-        //G2D.rotate(rotationAngle);
-        G2D.drawImage(image, tran, null);
+        G2D.rotate(rotationAngle, screen_x, screen_y);
+        G2D.drawImage(image, screen_x, screen_y, gp.tile_size, gp.tile_size, null);
+        
         //G2D.rotate(rotationAngle);
         G2D.setColor(Color.white);
         G2D.drawRect(screen_x + hitbox.x, screen_y + hitbox.y, hitbox.width, hitbox.height);
-        
+        //screen_x, screen_y, gp.tile_size, gp.tile_size
         
     }
 }
