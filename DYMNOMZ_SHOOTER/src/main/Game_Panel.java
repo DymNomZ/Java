@@ -33,12 +33,15 @@ public class Game_Panel extends JPanel implements Runnable{
     public Collision_Handler CH = new Collision_Handler(this);
     public DYM_Player player = new DYM_Player(this, KH);
 
+    //private Point mouse_point;
+
     public Game_Panel(){
         this.setPreferredSize(new Dimension(screen_width, screen_height));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(KH);
+
     }
 
     public void start_game_thread(){

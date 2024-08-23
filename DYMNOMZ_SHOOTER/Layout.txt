@@ -47,6 +47,8 @@ Power Ups:
 
 =================== ADVANCED ===========================
 
+0. Implement where camera stops at border edge
+
 1. Implement wave system = Constant number of zombies per wave, -counter per kill
 
 2. Early rounds spawn zombies slower, increase per amount of rounds, has limit to how fast they spawn

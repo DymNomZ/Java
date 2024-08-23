@@ -2,7 +2,9 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.Game_Panel;
@@ -15,6 +17,7 @@ public class DYM_Player extends DYM_Entity{
 
     public final int screen_x;
     public final int screen_y;
+
 
     public DYM_Player(Game_Panel gp, Key_Handler kh){
         this.gp = gp;
@@ -44,6 +47,7 @@ public class DYM_Player extends DYM_Entity{
             System.out.println("Wrong player sprite path");
             e.printStackTrace();
         }
+        
     }
 
     public void update_player_pos(){
@@ -73,9 +77,22 @@ public class DYM_Player extends DYM_Entity{
     }
 
     public void draw(Graphics2D G2D){
+        int cursorX = MouseInfo.getPointerInfo().getLocation().x;
+        int cursorY = MouseInfo.getPointerInfo().getLocation().y;
+        float xDistance = cursorX - screen_x;
+        float yDistance = cursorY - screen_y;
+        AffineTransform tran = new AffineTransform();
+        double rotationAngle = Math.toDegrees(Math.atan2(yDistance, xDistance));
+        tran.rotate(rotationAngle);
 
-        G2D.drawImage(image, screen_x, screen_y, gp.tile_size, gp.tile_size, null);
+        System.out.println(cursorX + " " + cursorY + " " + screen_x + " " + screen_y + " " + rotationAngle);
+
+        //G2D.rotate(rotationAngle);
+        G2D.drawImage(image, tran, null);
+        //G2D.rotate(rotationAngle);
         G2D.setColor(Color.white);
         G2D.drawRect(screen_x + hitbox.x, screen_y + hitbox.y, hitbox.width, hitbox.height);
+        
+        
     }
 }
