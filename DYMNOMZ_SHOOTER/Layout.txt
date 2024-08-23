@@ -1,6 +1,6 @@
 Plans to recreate my Grade 10 shooter game that I made using Scratch
 
-1. Draw all sprites to be used (Map tiles, Power-ups, Zombie, Player) Bullet is simple rectangle ✅ (Completed on August 23, 2024)
+1. Draw all sprites to be used (Map tiles, Power-ups, Zombie, Player) Bullet is simple rectangle ✅
 Power Ups:
 - 2x points
 - 2x speed
@@ -11,11 +11,11 @@ Power Ups:
 - Regen
 - +HP
 
-2. Implement General game system, render map and player, player and camera Movementv✅
+2. Implement General game system, render map and player, player and camera Movement ✅
 
-3. Player to map Collisions
+3. Player to map Collisions ✅ (Completed on August 23, 2024)
 
-4. Make Player follow cursor
+4. Make Player point to cursor
 
 5. Implement diagonal movement
 

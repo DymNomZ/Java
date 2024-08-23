@@ -56,7 +56,7 @@ public class DYM_Player extends DYM_Entity{
             }
 
             is_colliding = false;
-            //gp.collisionChecker.checkTile(this);
+            gp.CH.check_tile(this);
 
             //int objectIdx = gamePanel.collisionChecker.checkObject(this, true);
             //pickUpObj(objectIdx);

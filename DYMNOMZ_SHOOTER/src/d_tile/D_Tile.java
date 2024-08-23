@@ -1,8 +1,8 @@
-package tile;
+package d_tile;
 
 import java.awt.image.BufferedImage;
 
-public class Tile {
+public class D_Tile {
     BufferedImage image;
-    Boolean is_solid = false;
+    public String name;
 }

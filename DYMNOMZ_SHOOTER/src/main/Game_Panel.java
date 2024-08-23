@@ -1,18 +1,18 @@
 package main;
 
+import d_tile.Tile_Manager;
 import entity.DYM_Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
-import tile.Tile_Manager;
 
 public class Game_Panel extends JPanel implements Runnable{
 
     //WINODW AND TILE SETTINGS
     final public int tile_size = 48;
-    final int max_screen_column = 22;
+    final int max_screen_column = 25;
     final int max_screen_row = 16;
     final public int screen_width = tile_size * max_screen_column;
     final public int screen_height = tile_size * max_screen_row;
@@ -30,6 +30,7 @@ public class Game_Panel extends JPanel implements Runnable{
     //GAME SYSTEM
     Tile_Manager TM = new Tile_Manager(this);
     Key_Handler KH = new Key_Handler();
+    public Collision_Handler CH = new Collision_Handler(this);
     public DYM_Player player = new DYM_Player(this, KH);
 
     public Game_Panel(){

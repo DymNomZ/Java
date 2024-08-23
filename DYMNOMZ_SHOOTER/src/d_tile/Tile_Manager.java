@@ -1,4 +1,4 @@
-package tile;
+package d_tile;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -9,12 +9,12 @@ import main.Game_Panel;
 
 public class Tile_Manager {
     Game_Panel game_panel;
-    Tile[] tiles;
-    int map_tile[][];
+    public D_Tile[] tiles;
+    public int map_tile[][];
 
     public Tile_Manager(Game_Panel gp){
         game_panel = gp;
-        tiles = new Tile[2];
+        tiles = new D_Tile[2];
         map_tile = new int[gp.max_world_row][gp.max_world_row];
 
         get_tile_image();
@@ -23,11 +23,12 @@ public class Tile_Manager {
 
     public void get_tile_image(){
         try{
-            tiles[0] = new Tile();
+            tiles[0] = new D_Tile();
             tiles[0].image = ImageIO.read(getClass().getResourceAsStream("../../assets/tiles/floor.png"));
-            tiles[1] = new Tile();
+            tiles[0].name = "floor";
+            tiles[1] = new D_Tile();
             tiles[1].image = ImageIO.read(getClass().getResourceAsStream("../../assets/tiles/border.png"));
-            tiles[1].is_solid = true;
+            tiles[1].name = "border";
         }catch (IOException e){
             System.out.println("Wrong tile file path");
             e.printStackTrace();
