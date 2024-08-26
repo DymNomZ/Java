@@ -1,4 +1,4 @@
-package LeetCode.groupAnagrams;
+package LeetCode.GroupAnagrams;
 
 import java.util.List;
 
