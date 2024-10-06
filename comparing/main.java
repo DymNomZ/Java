@@ -50,6 +50,10 @@ public class main {
         }
 
         System.out.println();
+
+        cellphone c = new samsung();
+        c.turn_on();
+        System.out.println(cellphone.num);
     }
     
 }
