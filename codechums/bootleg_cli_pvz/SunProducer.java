@@ -1,4 +1,4 @@
-package codechum_bootleg_cli_pvz;
+package bootleg_cli_pvz;
 
 interface SunProducer {
     int produce_sun();
