@@ -17,9 +17,34 @@ class Main {
         b.start();
         c.start();
 
-        try {
-            c.join();
-        } catch (InterruptedException e) {
-        }
+        // SingleSlotQueue queue = new SingleSlotQueue();
+
+        // Thread sender = new Thread(() -> {
+        //     for (int i = 1; i <= 3; i++) {
+        //         String message = "Message " + i;
+        //         queue.sendMessage(message);
+        //         System.out.println("Sent: " + message);
+        //         try {
+        //             Thread.sleep(500); // Simulate some delay
+        //         } catch (InterruptedException e) {
+        //             Thread.currentThread().interrupt();
+        //         }
+        //     }
+        // });
+
+        // Thread receiver = new Thread(() -> {
+        //     for (int i = 1; i <= 3; i++) {
+        //         String message = queue.receiveMessage();
+        //         System.out.println("Received: " + message);
+        //         try {
+        //             Thread.sleep(1000); // Simulate some delay
+        //         } catch (InterruptedException e) {
+        //             Thread.currentThread().interrupt();
+        //         }
+        //     }
+        // });
+
+        // sender.start();
+        // receiver.start();
     }
 }

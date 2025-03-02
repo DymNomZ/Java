@@ -6,7 +6,7 @@ public class ABCThread implements Runnable {
     static int turn = 1;
     int change;
     char name;
-    static Object lock = new Object();
+    static final Object lock = new Object();
 
     public ABCThread(char name, int change){
         this.name = name;
@@ -16,32 +16,38 @@ public class ABCThread implements Runnable {
     @Override
     public void run(){
 
-        while(COUNT != 10){
+        while(COUNT < 10){
 
-            synchronized(Locks.a_lock){
+            synchronized(lock){
 
                 while(turn != change){
                     try {
-                        Locks.a_lock.wait();
+                        lock.wait();
                     } catch (InterruptedException e) {
                     }
                 }
 
-                COUNT++;
+                // try {
+                //     if(COUNT != 0 )lock.wait();
+                // } catch (InterruptedException e) {
+                // }
+
+                //System.out.println("BEFORE " + COUNT + " from thread " + name);
+
+                if(COUNT < 10) COUNT++;
                 System.out.println(COUNT + " from thread " + name);
 
                 turn = (change + 1) == 4 ? 1 : change + 1;
 
-                Locks.a_lock.notifyAll();
+                lock.notifyAll();
 
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                 }
 
             }
         }
 
-        return;
     }
 }
